@@ -28,9 +28,9 @@ def predict_digit():
     image = Image.open(stream).convert("L").resize((8, 8))
     image.save("image.jpg")
 
-    image_np = np.array(image) / 16.0
-    image_np = image_np.reshape(1, 8*8).astype(np.uint8)
-    image_np = np.full((1, 8*8), 16, dtype=np.uint8) - image_np
+    image_np = np.array(image) / 255.0
+    image_np = image_np.reshape(1, 8*8).astype(np.float32)
+    image_np = np.full((1, 8*8), 1, dtype=np.float32) - image_np
     print(image_np)
     
     prediction = model.predict(image_np)
